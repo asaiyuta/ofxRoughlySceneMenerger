@@ -2,6 +2,7 @@
 #include "baseClass.h"
 #include <Vector>
 #include <iostream>
+#include <memory>
 
 class Scenes{
 public:
@@ -11,17 +12,13 @@ public:
 		setScenes(all...);
 	}
 	~Scenes(){
-//		std::size_t currentSize = rawScenes.size();
-//		for(int i = 0 ; i < currentSize ; ++i){
-//			delete rawScenes[i];
-//		}//todo add(a,a,a) removeError
 	}
 	
-	inline baseClass* operator [] (const std::size_t& index) const{
+	inline std::shared_ptr<baseClass> operator [] (const std::size_t& index) const{
 		return this -> rawScenes[index];
 	}
 	
-	inline baseClass* at(const std::size_t& index) const{
+	inline std::shared_ptr<baseClass> at(const std::size_t& index) const{
 		return this -> rawScenes[index];
 	}
 	
@@ -47,15 +44,18 @@ public:
 private:
 	template <typename sceneOne,typename ...sceneRest>
  	void setScenes(sceneOne one,sceneRest... rest){
-		rawScenes.push_back(one);
+		std::shared_ptr<baseClass> ptr(one);
+		rawScenes.push_back(ptr);
 		setScenes(rest...);
 	}
 	template <typename sceneOne>
 	void setScenes(sceneOne one){
-		rawScenes.push_back(one);
+		std::shared_ptr<baseClass> ptr(one);
+		rawScenes.push_back(ptr);
 		rawScenes.shrink_to_fit();
 	}
-	std::vector<baseClass*> rawScenes;
+//	std::vector<baseClass*> rawScenes;
+	std::vector<std::shared_ptr<baseClass> > rawScenes;
 };
 
 
@@ -97,7 +97,7 @@ public:
 		return "";
 	}
 	
-	baseClass* getSceneFromName(const std::string& name){
+	std::shared_ptr<baseClass> getSceneFromName(const std::string& name){
 		for(int packNum = 0 ; packNum < rawScenesPack.size() ; ++packNum){
 			for(int sceneNum = 0 ; sceneNum < rawScenesPack[packNum] -> size() ; ++sceneNum){
 				if(name == rawScenesPack[packNum] -> getSceneName(sceneNum)){
@@ -130,6 +130,10 @@ public:
 	template <typename ...scenes>
 	void addScenes(scenes... all){
 		scenesPack.add(all...);
+	}
+	
+	void removeScenesPack(std::size_t targetNum){
+		scenesPack.remove(targetNum);
 	}
 	
 	void changeScenes(std::size_t sceneNum,bool isSetup = false){

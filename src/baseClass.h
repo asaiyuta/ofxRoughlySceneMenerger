@@ -1,10 +1,8 @@
 #pragma once
 #include "aslPoliDebugger.h"
-#include <iostream>
 class baseClass{
 public:
 	virtual ~baseClass(){
-		
 	}
 	
 	virtual void setup(){
