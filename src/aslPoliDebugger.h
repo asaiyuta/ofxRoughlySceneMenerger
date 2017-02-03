@@ -7,7 +7,7 @@
 
 namespace asl{
 	template<typename T>
-	static std::string easyTypename(T& obj){
+	static std::string easyTypename(const T& obj){
 		const std::type_info& id = typeid(obj);
 		int stat(0);
         std::string nameBuffer;

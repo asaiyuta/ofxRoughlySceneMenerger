@@ -14,11 +14,11 @@ public:
 	~Scenes(){
 	}
 	
-	inline std::shared_ptr<baseClass> operator [] (const std::size_t& index) const{
+	inline std::shared_ptr<baseClass> operator [] (std::size_t index) const{
 		return this -> rawScenes[index];
 	}
 	
-	inline std::shared_ptr<baseClass> at(const std::size_t& index) const{
+	inline std::shared_ptr<baseClass> at(std::size_t index) const{
 		return this -> rawScenes[index];
 	}
 	
@@ -34,9 +34,9 @@ public:
 		return names;
 	}
 	
-	std::string getSceneName(const std::size_t& index){
+	std::string getSceneName(std::size_t index){
 		if(rawScenes.size() >= index){
-		return (std::string)*rawScenes[index];
+			return (std::string)*rawScenes[index];
 		}
 		return "";
 	}
@@ -75,7 +75,7 @@ public:
 		rawScenesPack.shrink_to_fit();
 	}
 	
-	inline Scenes operator [] (const std::size_t& index) const{
+	inline Scenes operator [] (std::size_t index) const{
 		return *rawScenesPack[index];
 	}
 	
@@ -83,14 +83,14 @@ public:
 		return this -> rawScenesPack.size();
 	}
 	
-	std::string getPackScenesNames(const std::size_t& index) const{
+	std::string getPackScenesNames(std::size_t index) const{
 		if(rawScenesPack.size() >= index){
 			return rawScenesPack[index] -> getPackScenesNames();
 		}
 		return "";
 	}
 	
-	std::string getSceneName(const std::size_t& packIndex ,const std::size_t& sceneIndex) const{
+	std::string getSceneName(std::size_t packIndex ,std::size_t sceneIndex) const{
 		if(rawScenesPack.size() >= packIndex){
 			return rawScenesPack[packIndex] -> getSceneName(sceneIndex);
 		}
