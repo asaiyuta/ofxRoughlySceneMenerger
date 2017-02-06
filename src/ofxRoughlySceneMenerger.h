@@ -8,7 +8,7 @@ class Scenes{
 public:
 	Scenes(){}
 	template <typename ...scenes>
-	Scenes(scenes... all){
+	Scenes(scenes *... all){
 		setScenes(all...);
 	}
 	~Scenes(){
@@ -64,7 +64,7 @@ public:
 	ScenesPack(){}	
 	~ScenesPack(){}
 	template <typename ...scenes>
-	void add(scenes... all){
+	void add(scenes *... all){
 		Scenes* uncharted = new Scenes(all...);
 		rawScenesPack.push_back(uncharted);
 	}
