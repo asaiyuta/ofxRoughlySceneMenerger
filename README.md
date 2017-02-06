@@ -1,4 +1,4 @@
-# ofxRoughlySceneMenerger
+# ofxRoughlySceneManager
 発展途上。
 
 * クラス名を勝手に取ってきて、管理するよ。やったね！
@@ -20,23 +20,23 @@ class scene2 :public baseClass{
     hogehoge...: 
 };
 
-ofxRoughlySceneMenerger roughlySceneMenerger;
+ofxRoughlySceneManager roughlySceneManager;
 baseClass* ptr =  new scene0;
-roughlySceneMenerger.addScenes(ptr,new(scene1),new(scene2));
+roughlySceneManager.addScenes(ptr,new(scene1),new(scene2));
 //どっちでもいいよ。とりあえず突っ込んでね。
 //内部的にシーンパックが生成されるよ。
 //scenePack index 0 
-roughlySceneMenerger.addScenes(ptr,new(scene1));
+roughlySceneManager.addScenes(ptr,new(scene1));
 //scenePack index 1
 
-roughlySceneMenerger.removeScenesPack(0);
+roughlySceneManager.removeScenesPack(0);
 //これでシーンパックは削除。切り詰められるよ。
 
-roughlySceneMenerger.update() //パックのすべてを　update　するよ。
-roughlySceneMenerger.update("scene0") //stringで指定したクラス名のシーンを一つ。　update　するよ。
+roughlySceneManager.update() //パックのすべてを　update　するよ。
+roughlySceneManager.update("scene0") //stringで指定したクラス名のシーンを一つ。　update　するよ。
 
-roughlySceneMenerger.getAllScenesName();　//現在登録されてるシーンをすべてstringで返すよ。
-roughlySceneMenerger.getScenesName(index) //インデックス番号に登録されたシーンパック中身の名前。
-roughlySceneMenerger.changeScenes(index) //そのインデックスのシーンパックに切り替わるよ。
-roughlySceneMenerger.changeScenes(index,true) //そのインデックスのシーンパックに切り替わるよ。 + setupをするよ。
+roughlySceneManager.getAllScenesName();　//現在登録されてるシーンをすべてstringで返すよ。
+roughlySceneManager.getScenesName(index) //インデックス番号に登録されたシーンパック中身の名前。
+roughlySceneManager.changeScenes(index) //そのインデックスのシーンパックに切り替わるよ。
+roughlySceneManager.changeScenes(index,true) //そのインデックスのシーンパックに切り替わるよ。 + setupをするよ。
 ```

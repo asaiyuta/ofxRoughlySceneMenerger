@@ -1,6 +1,6 @@
 #pragma once
 #include "baseClass.h"
-#include <Vector>
+#include <vector>
 #include <iostream>
 #include <memory>
 
@@ -121,12 +121,12 @@ public:
 	std::vector<Scenes*> rawScenesPack;
 };
 
-class ofxRoughlySceneMenerger{
+class ofxRoughlySceneManager{
 public:
-	ofxRoughlySceneMenerger()
+	ofxRoughlySceneManager()
 	: currentScenesNum(0)
 	{}
-	~ofxRoughlySceneMenerger(){}
+	~ofxRoughlySceneManager(){}
 	template <typename ...scenes>
 	void addScenes(scenes... all){
 		scenesPack.add(all...);
